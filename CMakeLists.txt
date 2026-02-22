@@ -4,6 +4,7 @@ project(libmimalloc C CXX)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
+option(MI_CRAN_COMPLIANT    "Provide support for compliance with the Comprehensive R-Archive Network (CRAN) policies" OFF)
 option(MI_SECURE            "Use security mitigations (like meta data guard pages, allocation randomization, double-free mitigation, and free-list corruption detection)" OFF)
 option(MI_SECURE_FULL       "Use full security mitigations including guard pages at the end of each mimalloc page (may be expensive)" OFF)
 option(MI_PADDING           "Enable padding to detect heap block overflow (always on in DEBUG or SECURE mode, or with Valgrind/ASAN)" OFF)

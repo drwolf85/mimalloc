@@ -13,6 +13,10 @@ terms of the MIT license. A copy of the license can be found in the file
 #include <stdio.h>   // fputs, stderr
 #include <stdlib.h>  // atexit
 
+#ifndef MI_CRAN_COMPLIANT
+#define MI_CRAN_COMPLIANT 0
+#endif
+
 // xbox has no console IO
 #if !defined(WINAPI_FAMILY_PARTITION) || WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP | WINAPI_PARTITION_SYSTEM)
 #define MI_HAS_CONSOLE_IO
@@ -595,8 +599,12 @@ void _mi_prim_out_stderr( const char* msg )
         WriteFile(hcon, msg, (DWORD)len, &written, NULL);
       }
       else {
-        // finally fall back to fputs after all
+        #if MI_CRAN_COMPLIANT
+	return;
+        #else
+	// finally fall back to fputs after all
         fputs(msg, stderr);
+        #endif
       }
     }
   }
