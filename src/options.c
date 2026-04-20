@@ -215,11 +215,11 @@ void mi_options_print(void) mi_attr_noexcept
   const int verpatch = (MI_MALLOC_VERSION%100);
   _mi_message(
     #if MI_CRAN_COMPLIANT
-    "v%i.%i.%i%s%s\n"
+    "v%i.%i.%i%s%s\n",
     #else
-    #endif
     "v%i.%i.%i%s%s (built on %s, %s)\n",
-    ,  vermajor, verminor, verpatch,
+    #endif
+      vermajor, verminor, verpatch,
       #if defined(MI_CMAKE_BUILD_TYPE)
       ", " mi_stringify(MI_CMAKE_BUILD_TYPE)
       #else
